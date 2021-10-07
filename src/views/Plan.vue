@@ -19,18 +19,32 @@
 <style lang="scss">
 
 .plan {
-    max-width: 1170px;
-    margin: auto;
+  width: 85%;
+  max-width: 1170px;
+  margin: auto;
+  margin-top: 80px;
 
     p {
+        margin-bottom: 20px;
+
+        &:first-child {
+            margin-bottom: 20px;
+        }
 
         &:nth-child(2) {
             text-align: center;
+            font-weight: bolder;
         }
     }
 
     div {
         text-align: center;
+
+        iframe {
+            width: 85%;
+            max-width: 600px;
+            height: 450px;
+        }
     }
 }
 

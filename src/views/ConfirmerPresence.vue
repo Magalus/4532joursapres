@@ -8,12 +8,19 @@
 <style lang="scss">
 
 .confirm {
+    width: 85%;
     max-width: 1170px;
     margin: auto;
     text-align: center;
+    margin-top: 80px;
+
+    p {
+        margin-bottom: 20px;
+    }
 
     img {
-        width: 800px;
+        width: 85%;
+        max-width: 800px;
     }
 }
 

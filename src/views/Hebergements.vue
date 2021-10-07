@@ -89,7 +89,7 @@
             <ul>
                 <li>Camping :</li>
             </ul>
-            <div class="hebergementList">
+            <div class="hebergementList lastHebergementList">
                 <Hebergement 
                     :name="'Aire de camping-cars'"
                     :localisation="'Situé à Port de Buzet (2km) &#8211; 6 emplacements à 7,40€/nuit'"
@@ -127,13 +127,61 @@ export default {
 <style lang="scss">
 
 .hebergements {
+    width: 85%;
     max-width: 1170px;
     margin: auto;
+    margin-top: 80px;
+
+    p:first-child {
+        margin-bottom: 70px;
+    }
+
+    ul {
+        padding-left: 40px;
+        margin-bottom: 25px;
+
+        li {
+            font-weight: bolder;
+        }
+    }
 
     .hebergementList {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+
+    .lastHebergementList {
+        margin-bottom: 0px;
+
+        .hebergement {
+            margin-bottom: 0px;
+
+            &:first-child{ 
+
+                @media screen and (max-width: 768px) {
+                    margin-bottom: 30px;
+                }
+            }
+
+            &:last-child .infos {
+
+                @media screen and (max-width: 945px) {
+                   top: 40%;
+                }
+
+                @media screen and (max-width: 768px) {
+                   top: 50%;
+                }
+
+                @media screen and (max-width: 470px) {
+                   top: 40%;
+                }
+            }
+        }
+
+        
     }
 }
 

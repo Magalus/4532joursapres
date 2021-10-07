@@ -1,16 +1,21 @@
 <template>
     <div class="event">
         <img class="calendarIcon" src="../../assets/icons/calendar.png" alt="">
-        <div>{{ this.date }}</div>
-        <div>{{ this.event }}</div>
-        <div>
-            <img class="calendarIcon" src="../../assets/icons/localisation.png" alt="">
-            <router-link v-if="this.localisation == 'Domaine de Pécarrère, Buzet-sur-Baïse'" to="/plan d'acces">{{ this.localisation }}</router-link> 
-            <span v-else>{{ this.localisation }}</span>
+        <div class="date">{{ this.date }}</div>
+        <div class="eventName">{{ this.event }}</div>
+        <div v-if="this.localisation == 'Domaine de Pécarrère, Buzet-sur-Baïse'">
+            <router-link to="/plan d'acces" class="planLink">
+                <img class="localIcon" src="../../assets/icons/localisation.png" alt="">
+                {{ this.localisation }}
+            </router-link>
         </div>
-        <div v-if="this.time">
-            <img class="calendarIcon" src="../../assets/icons/clock.png" alt="">
-            <span>{{ this.time }}</span>
+        <div v-else>
+            <img class="localIcon" src="../../assets/icons/localisation.png" alt="">
+            {{ this.localisation }}
+        </div>
+        <div v-if="this.time" class="time">
+            <img class="clockIcon" src="../../assets/icons/clock.png" alt="">
+            {{ this.time }}
         </div>
     </div>
 </template>
@@ -32,10 +37,42 @@ export default {
 
 .event{
 
-    margin: 60px 0px;
+    width: 85%;
+    max-width: 1170px;
+    margin: auto;
+    margin-top: 15px;
 
     .calendarIcon {
       width: 91px;  
+    }
+
+    .date {
+        font-size: 22px;
+        font-weight: bolder;
+        margin: 20px 0px;
+    }
+
+    .eventName {
+        margin-bottom: 20px;
+    }
+
+    .planLink {
+        text-decoration: none;
+        color: #2c3e50;
+        transition: all ease 0.35s;
+
+        &:hover {
+            color: #f0ddc5;
+        }
+    }
+
+    .localIcon, .clockIcon {
+        width: 20px;
+        vertical-align: top;
+    }
+
+    .time {
+        margin-top: 20px;
     }
 }
 

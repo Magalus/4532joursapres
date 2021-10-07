@@ -102,7 +102,7 @@ export default {
 .navbar {
     background-size: cover;
     background-repeat: no-repeat;
-    height: 370px;
+    height: 365px;
 
     div:first-child {
         display: flex;
@@ -111,21 +111,21 @@ export default {
     }
 
     div:last-child {
-        padding: 80px 0px;
+        padding: 70px 0px;
         margin: auto;
-        font-size: 2.8em;
-        font-weight: 700;
+        font-size: 40px;
+        line-height: 1.25em;
         color: white;
         text-align: center;
     }
 
     a {
         text-decoration: none;
-        font-size: 1em;;
-        padding: 20px 20px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        padding: 15px 20px 20px 20px;
         margin: 0px 2px;
         color: white;
-        letter-spacing: 1px;        
     }
 
     .selected {
@@ -139,6 +139,7 @@ export default {
     align-items: center;
     background-color: #FBF7F1;
     height: 50px;
+    font-size: 15px;
 
     .underNavText {
         display: flex;

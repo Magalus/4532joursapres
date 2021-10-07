@@ -16,7 +16,7 @@
 <style lang="scss">
 
 .logo_jl {
-    margin: 50px 0px;
+    margin: 80px 0px;
     text-align: center;
 }
 

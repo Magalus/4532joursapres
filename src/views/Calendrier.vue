@@ -1,7 +1,7 @@
 <template>
     <div class="calendar">
         <Evenement 
-            :date="'Date à definir'" 
+            :date="'Date à définir'" 
             :event="'Mariage civil'" 
             :localisation="'Mairie de Bordeaux'" 
             :time="undefined"
@@ -41,7 +41,7 @@ export default {
 .calendar {
     max-width: 1170px;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 65px;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -51,6 +51,7 @@ hr.dots {
 
     border: none;
     line-height: 1;
+    margin: 50px 0px;
 
     &:before {
         content: '...';
