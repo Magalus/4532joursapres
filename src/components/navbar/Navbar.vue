@@ -85,7 +85,7 @@
             <router-link 
                 class="nav-links-responsive" 
                 :class="{ selectedResponsive : this.pageName == 'Accueil' }"
-                @click="this.landing = false; changePageName('Accueil'); changeImageName(undefined); this.isResponsiveNav = !this.isResponsiveNav"
+                @click="this.landing = true; changePageName('Accueil'); changeImageName(undefined); this.isResponsiveNav = !this.isResponsiveNav"
                 to="/">
                 Accueil
             </router-link> 
@@ -213,6 +213,16 @@ name: 'Navbar',
             &:hover {
                 cursor: pointer;
             }
+
+            @media screen and (max-width: 1086px) {
+                height: 25px;
+                width: 25px;
+            }  
+
+            @media screen and (max-width: 768px) {
+                height: 18px;
+                width: 18px;
+            }  
         }
     }
 
