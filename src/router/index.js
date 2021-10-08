@@ -25,17 +25,17 @@ const routes = [
     component: Hebergements
   },
   {
-    path: "/plan d'acces",
+    path: "/plan-dacces",
     name: 'Plan',
     component: Plan
   },
   {
-    path: '/confirme ma presence',
+    path: '/confirme-ma-presence',
     name: 'ConfirmerPresence',
     component: ConfirmerPresence
   },
   {
-    path: '/liste de mariage',
+    path: '/liste-de-mariage',
     name: 'ListeMariage',
     component: ListeMariage
   },

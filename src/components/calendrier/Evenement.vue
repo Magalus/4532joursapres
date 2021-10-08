@@ -4,7 +4,7 @@
         <div class="date">{{ this.date }}</div>
         <div class="eventName">{{ this.event }}</div>
         <div v-if="this.localisation == 'Domaine de Pécarrère, Buzet-sur-Baïse'">
-            <router-link to="/plan d'acces" class="planLink">
+            <router-link to="/plan-dacces" class="planLink">
                 <img class="localIcon" src="../../assets/icons/localisation.png" alt="">
                 {{ this.localisation }}
             </router-link>
