@@ -1,58 +1,51 @@
 <template> 
-    <nav class="navbar" :style="this.landing ? 'height:auto' : 'height:380px' ">
-        <img v-if="this.pageName != 'Accueil'" class="navImage" :src="require(`@/assets/images/${this.imageName}.jpeg`)" alt="">
-        <div class="nav" :class="{landing : this.landing}">
+    <nav class="navbar" :style="this.pageName == 'Home' ? 'height:auto' : 'height:380px' ">
+        <img v-if="this.pageName != 'Home'" class="navImage" :src="require(`@/assets/images/${this.pageName}.jpeg`)" alt="">
+        <div class="nav" :class="{landing : this.pageName == 'Home'}">
             <router-link 
                 class="nav-links" 
-                :class="{ selected : this.pageName == 'Accueil' }"
-                @click="this.landing = true; changePageName('Accueil'); changeImageName(undefined)"
+                :class="{ selected : this.pageName == 'Home' }"
                 to="/">
                 Accueil
             </router-link> 
             <router-link 
                 class="nav-links" 
                 :class="{ selected : this.pageName == 'Calendrier' }"
-                @click="this.landing = false; changePageName('Calendrier'); changeImageName('calendrier')"
                 to="/calendrier">
                 Calendrier
             </router-link>
             <router-link 
                 class="nav-links" 
-                :class="{ selected : this.pageName == 'Hébergements' }"
-                @click="this.landing = false; changePageName('Hébergements'); changeImageName('hebergement')"
+                :class="{ selected : this.pageName == 'Hebergements' }"
                 to="/hebergements">
                 Hébergements
             </router-link> 
             <router-link 
                 class="nav-links" 
-                :class="{ selected : this.pageName == 'Plan d\'accès' }"
-                @click="this.landing = false; changePageName('Plan d\'accès'); changeImageName('plan-dacces')"
+                :class="{ selected : this.pageName == 'Plan' }"
                 to="/plan-dacces">
                 Plan d'accès
             </router-link> 
             <router-link 
                 class="nav-links" 
-                :class="{ selected : this.pageName == 'Confirmer ma présence' }"
-                @click="this.landing = false; changePageName('Confirmer ma présence'); changeImageName('confirme-ma-presence')"
+                :class="{ selected : this.pageName == 'ConfirmerPresence' }"
                 to="/confirme-ma-presence">
                 Confirmer ma présence
             </router-link> 
             <router-link 
                 class="nav-links" 
-                :class="{ selected : this.pageName == 'Liste de mariage' }"
-                @click="this.landing = false; changePageName('Liste de mariage'); changeImageName('liste-de-mariage')"
+                :class="{ selected : this.pageName == 'ListeMariage' }"
                 to="/liste-de-mariage">
                 Liste de mariage
             </router-link> 
             <router-link 
                 class="nav-links" 
                 :class="{ selected : this.pageName == 'Contact' }"
-                @click="this.landing = false; changePageName('Contact'); changeImageName('contact')"
                 to="/contact">
                 Contact
             </router-link> 
         </div>
-        <div v-if="this.pageName == 'Accueil'" class="videoPlayer">
+        <div v-if="this.pageName == 'Home'" class="videoPlayer">
             <video class="navVideo" autoplay loop :muted="!this.sound">
                 <source src="../../assets/video/engagement.mp4">
                 Your browser does not support the video tag.
@@ -72,7 +65,7 @@
                 alt=""
             >
         </div>
-        <div v-if="this.pageName != 'Accueil'" class="pageName">
+        <div v-if="this.pageName != 'Home'" class="pageName">
             <h1>{{this.pageName}}</h1>
         </div>
         <div class="button-responsive" @click="this.isResponsiveNav = !this.isResponsiveNav">
@@ -84,56 +77,56 @@
             <div class="close" @click="this.isResponsiveNav = !this.isResponsiveNav"></div>
             <router-link 
                 class="nav-links-responsive" 
-                :class="{ selectedResponsive : this.pageName == 'Accueil' }"
-                @click="this.landing = true; changePageName('Accueil'); changeImageName(undefined); this.isResponsiveNav = !this.isResponsiveNav"
+                :class="{ selectedResponsive : this.pageName == 'Home' }"
+                @click="this.isResponsiveNav = !this.isResponsiveNav"
                 to="/">
                 Accueil
             </router-link> 
             <router-link 
                 class="nav-links-responsive" 
                 :class="{ selectedResponsive : this.pageName == 'Calendrier' }"
-                @click="this.landing = false; changePageName('Calendrier'); changeImageName('calendrier'); this.isResponsiveNav = !this.isResponsiveNav"
+                @click="this.isResponsiveNav = !this.isResponsiveNav"
                 to="/calendrier">
                 Calendrier
             </router-link>
             <router-link 
                 class="nav-links-responsive" 
-                :class="{ selectedResponsive : this.pageName == 'Hébergements' }"
-                @click="this.landing = false; changePageName('Hébergements'); changeImageName('hebergement'); this.isResponsiveNav = !this.isResponsiveNav"
+                :class="{ selectedResponsive : this.pageName == 'Hebergements' }"
+                @click="this.isResponsiveNav = !this.isResponsiveNav"
                 to="/hebergements">
                 Hébergements
             </router-link> 
             <router-link 
                 class="nav-links-responsive" 
-                :class="{ selectedResponsive : this.pageName == 'Plan d\'accès' }"
-                @click="this.landing = false; changePageName('Plan d\'accès'); changeImageName('plan-dacces'); this.isResponsiveNav = !this.isResponsiveNav"
+                :class="{ selectedResponsive : this.pageName == 'Plan' }"
+                @click="this.isResponsiveNav = !this.isResponsiveNav"
                 to="/plan-dacces">
                 Plan d'accès
             </router-link> 
             <router-link 
                 class="nav-links-responsive" 
-                :class="{ selectedResponsive : this.pageName == 'Confirmer ma présence' }"
-                @click="this.landing = false; changePageName('Confirmer ma présence'); changeImageName('confirme-ma-presence'); this.isResponsiveNav = !this.isResponsiveNav"
+                :class="{ selectedResponsive : this.pageName == 'ConfirmerPresence' }"
+                @click="this.isResponsiveNav = !this.isResponsiveNav"
                 to="/confirme-ma-presence">
                 Confirmer ma présence
             </router-link> 
             <router-link 
                 class="nav-links-responsive"
-                :class="{ selectedResponsive : this.pageName == 'Liste de mariage' }" 
-                @click="this.landing = false; changePageName('Liste de mariage'); changeImageName('liste-de-mariage'); this.isResponsiveNav = !this.isResponsiveNav"
+                :class="{ selectedResponsive : this.pageName == 'ListeMariage' }" 
+                @click="this.isResponsiveNav = !this.isResponsiveNav"
                 to="/liste-de-mariage">
                 Liste de mariage
             </router-link> 
             <router-link 
                 class="nav-links-responsive" 
                 :class="{ selectedResponsive : this.pageName == 'Contact' }"
-                @click="this.landing = false; changePageName('Contact'); changeImageName('contact'); this.isResponsiveNav = !this.isResponsiveNav"
+                @click="this.isResponsiveNav = !this.isResponsiveNav"
                 to="/contact">
                 Contact
             </router-link> 
         </div>
     </nav>
-    <div v-if="this.pageName != 'Accueil'" class="underNav">
+    <div v-if="this.pageName != 'Home'" class="underNav">
         <div class="underNavText">
             <span>Accueil </span>
             <span>
@@ -163,25 +156,14 @@ name: 'Navbar',
         return {
             isResponsiveNav: false,
             sound: false,
-            landing: true,
-            pageName: 'Accueil',
-            imageName: undefined,
+            pageName: 'Home',
         }
     },
-    methods: {
-        changePageName(pageName) {
-            this.pageName = pageName;
-        },
-        changeImageName(imageName) {
-            this.imageName = imageName;
+    watch: {
+        $route (to) {
+            this.pageName = to.name;
         },
     },
-    created() {
-        // if(window.location.href.split('/').pop() != '') {
-        //     console.log(window.location.href.split('/').pop());
-        //     this.pageName = window.location.href.split('/').pop();
-        // }
-    }
 }
 
 </script>
