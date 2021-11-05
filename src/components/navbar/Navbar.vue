@@ -161,37 +161,27 @@ export default {
 name: 'Navbar',
     data() {
         return {
+            isResponsiveNav: false,
+            sound: false,
+            landing: true,
             pageName: 'Accueil',
             imageName: undefined,
-            isResponsiveNav: false,
-            landing: true,
-            sound: false,
         }
     },
     methods: {
         changePageName(pageName) {
             this.pageName = pageName;
-            localStorage.setItem('pageName', this.pageName)
-            localStorage.setItem('landing', this.landing)
         },
         changeImageName(imageName) {
-            this.imageName = imageName
-            localStorage.setItem('imageName', this.imageName)
-        }
+            this.imageName = imageName;
+        },
     },
     created() {
-        if (window.location.href != 'http://localhost:8080/#/') {
-            if (localStorage.getItem('pageName')) {
-                this.pageName = localStorage.getItem('pageName')
-            }
-            if (localStorage.getItem('imageName')) {
-                this.imageName = localStorage.getItem('imageName')
-            }
-            if (localStorage.getItem('landing') == "false") {
-                this.landing = false;
-            }
-        }
-    },
+        // if(window.location.href.split('/').pop() != '') {
+        //     console.log(window.location.href.split('/').pop());
+        //     this.pageName = window.location.href.split('/').pop();
+        // }
+    }
 }
 
 </script>
