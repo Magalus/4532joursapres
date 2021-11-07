@@ -45,28 +45,36 @@
                 Contact
             </router-link> 
         </div>
-        <div v-if="this.pageName == 'Home'" class="videoPlayer">
-            <video class="navVideo" autoplay loop :muted="!this.sound">
-                <source src="../../assets/video/engagement.mp4">
-                Your browser does not support the video tag.
-            </video>
-            <img 
-                v-if="this.sound == true" 
-                @click="this.sound = !this.sound" 
-                class="soundIcon" 
-                src="../../assets/icons/volume.png" 
-                alt=""
-            >
-            <img 
-                v-if="this.sound == false" 
-                @click="this.sound = !this.sound" 
-                class="soundIcon" 
-                src="../../assets/icons/mute.png" 
-                alt=""
-            >
-        </div>
+            <div v-if="this.pageName == 'Home'" class="videoPlayer">
+                <div class="video-container">
+                    <iframe 
+                        id="ytplayer"
+                        ref="ytplayer"
+                        allowfullscreen
+                        title="YouTube video player" 
+                        src="http://www.youtube.com/embed/r8nRuzq1nck?playlist=r8nRuzq1nck&autoplay=1&mute=1&showinfo=0&controls=0&autohide=1&loop=1" 
+                        allow='autoplay; encrypted-media; gyroscope; picture-in-picture'
+                        volume="10"
+                        frameBorder="0">
+                    </iframe>
+                </div>
+                <img 
+                    v-if="this.sound == true" 
+                    @click="this.sound = !this.sound" 
+                    class="soundIcon" 
+                    src="../../assets/icons/volume.png" 
+                    alt=""
+                >
+                <img 
+                    v-if="this.sound == false" 
+                    @click="this.sound = !this.sound" 
+                    class="soundIcon" 
+                    src="../../assets/icons/mute.png" 
+                    alt=""
+                >
+            </div>
         <div v-if="this.pageName != 'Home'" class="pageName">
-            <h1>{{this.pageName}}</h1>
+            <h1>{{this.title}}</h1>
         </div>
         <div class="button-responsive" @click="this.isResponsiveNav = !this.isResponsiveNav">
             <span class="line"></span>
@@ -157,11 +165,26 @@ name: 'Navbar',
             isResponsiveNav: false,
             sound: false,
             pageName: 'Home',
+            titles: {
+                'Calendrier': 'Calendrier',
+                'Hebergements': 'Hébergements',
+                'Plan': "Plan d'accès",
+                'ConfirmerPresence': 'Confirmer ma présence',
+                'ListeMariage': 'Liste de mariage',
+                'Contact': 'Contact'
+            },
+            title: undefined,
         }
+    },
+    methods: {
+        changeTitle(title) {
+            this.title = title
+        },
     },
     watch: {
         $route (to) {
             this.pageName = to.name;
+            this.title = this.titles[to.name];
         },
     },
 }
@@ -173,14 +196,32 @@ name: 'Navbar',
 .navbar {
 
     .videoPlayer {
-        position: relative;
+        height: 100%;
+        width: 100%;
+        pointer-events: none;
+
+        .video-container {
+
+            position: relative;
+            padding-top: 56.25%;
+
+            iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+        }
 
         .soundIcon {
-            position: absolute;
+            position: relative;
             left: 15px;
-            bottom: 20px;
+            bottom: 45px;
             height: 32px;
             width: 32px;
+            pointer-events: auto;
 
             &:hover {
                 cursor: pointer;
@@ -189,11 +230,13 @@ name: 'Navbar',
             @media screen and (max-width: 1086px) {
                 height: 25px;
                 width: 25px;
+                bottom: 39px;
             }  
 
             @media screen and (max-width: 768px) {
                 height: 18px;
                 width: 18px;
+                bottom: 30px;
             }  
         }
     }

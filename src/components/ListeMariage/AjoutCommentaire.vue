@@ -1,10 +1,10 @@
 <template>
     <div class="addComment">
         <h3><span>LAISSER UN COMMENTAIRE</span></h3>
-        <form action="">
+        <form @submit.prevent="">
             <textarea name="" id="" cols="30" rows="10" placeholder="Commentaire"></textarea>
-            <input type="text" placeholder="Nom*">
-            <input type="text" placeholder="E-mail*">
+            <input type="text" placeholder="Nom*" required>
+            <input type="text" placeholder="E-mail*" required>
             <input type="text" placeholder="Site web">
             <div class="saveName">
                 <input type="checkbox" :checked="this.check">
