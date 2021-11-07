@@ -46,28 +46,23 @@
             </router-link> 
         </div>
             <div v-if="this.pageName == 'Home'" class="videoPlayer">
-                <div class="video-container">
-                    <iframe 
-                        id="ytplayer"
-                        ref="ytplayer"
-                        allowfullscreen
-                        title="YouTube video player" 
-                        src="http://www.youtube.com/embed/r8nRuzq1nck?playlist=r8nRuzq1nck&autoplay=1&mute=1&showinfo=0&controls=0&autohide=1&loop=1" 
-                        allow='autoplay; encrypted-media; gyroscope; picture-in-picture'
-                        volume="10"
-                        frameBorder="0">
-                    </iframe>
-                </div>
+                <YouTube
+                    class="video-container"
+                    src="https://www.youtube.com/embed/r8nRuzq1nck" 
+                    @ready="onReady"
+                    ref="youtube"
+                    :vars="this.paramsVideo"
+                />
                 <img 
                     v-if="this.sound == true" 
-                    @click="this.sound = !this.sound" 
+                    @click="this.sound = !this.sound; muteVideo()" 
                     class="soundIcon" 
                     src="../../assets/icons/volume.png" 
                     alt=""
                 >
                 <img 
                     v-if="this.sound == false" 
-                    @click="this.sound = !this.sound" 
+                    @click="this.sound = !this.sound; unMuteVideo()" 
                     class="soundIcon" 
                     src="../../assets/icons/mute.png" 
                     alt=""
@@ -158,7 +153,10 @@
 
 <script>
 
+import YouTube from 'vue3-youtube'
+
 export default {
+
 name: 'Navbar',
     data() {
         return {
@@ -174,11 +172,24 @@ name: 'Navbar',
                 'Contact': 'Contact'
             },
             title: undefined,
+            paramsVideo: {mute: 1, controls: 0, playlist: 'r8nRuzq1nck', loop: 1, showinfo: 0}
         }
+    },
+    components: { 
+        YouTube 
     },
     methods: {
         changeTitle(title) {
             this.title = title
+        },
+        onReady() {
+            this.$refs.youtube.playVideo()
+        },
+        muteVideo() {
+            this.$refs.youtube.mute()
+        },
+        unMuteVideo() {
+            this.$refs.youtube.unMute()
         },
     },
     watch: {
@@ -204,13 +215,15 @@ name: 'Navbar',
 
             position: relative;
             padding-top: 56.25%;
+            width: 100% !important;
+            height: 100% !important;
 
             iframe {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
             }
 
         }
