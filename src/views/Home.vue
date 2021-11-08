@@ -26,7 +26,15 @@
   width: 85%;
   max-width: 1170px;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 80px;
+
+  @media screen and (max-width: 1086px) {
+      margin-top: 60px;
+  }  
+
+  @media screen and (max-width: 768px) {
+      margin-top: 40px;
+  } 
 
   .quote {
     display: flex;

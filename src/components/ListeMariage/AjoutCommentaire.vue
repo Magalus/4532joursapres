@@ -1,15 +1,12 @@
 <template>
     <div class="addComment">
         <h3><span>LAISSER UN COMMENTAIRE</span></h3>
-        <form @submit.prevent="">
-            <textarea name="" id="" cols="30" rows="10" placeholder="Commentaire"></textarea>
-            <input type="text" placeholder="Nom*" required>
-            <input type="text" placeholder="E-mail*" required>
-            <input type="text" placeholder="Site web">
-            <div class="saveName">
-                <input type="checkbox" :checked="this.check">
-                <label @click="this.check = !this.check" for="">Enregistrer mon nom, mon e-mail et mon site dans le navigateur pour mon prochain commentaire.</label>
-            </div>
+        <form @submit.prevent="onSubmit()" ref="commentForm">
+            <textarea v-model="this.form.comment" name="" id="" cols="30" rows="10" placeholder="Commentaire"></textarea>
+            <input v-model="this.form.name" type="text" placeholder="Nom*" required>
+            <input v-model="this.form.mail" type="text" placeholder="E-mail*" required>
+            <div class="success" v-if="this.confirmation == 'success'">Commentaire envoyé</div>
+            <div class="fail" v-if="this.confirmation == 'fail'">Echec de l'envoi</div>
             <input type="submit" value="Laisser un commentaire">
         </form>
     </div>
@@ -17,10 +14,37 @@
 
 <script>
 
+import axios from 'axios';
+
 export default {
     data() {
         return {
-            check: false
+            form: {
+                comment: "",
+                name: "",
+                mail: "",
+            },
+            confirmation: '',
+        }
+    },
+    methods: {
+        onSubmit() {
+            axios
+            .post('mail.php', this.form)
+            .then(response => {
+                this.confirmation = 'success';
+                return response;
+            })
+            .catch(error => {
+                this.confirmation = 'fail';
+                return error;
+            });
+            this.resetForm()
+        },
+        resetForm() {
+            this.form.comment = "";
+            this.form.name = "";
+            this.form.mail = ""
         }
     }
 }
@@ -95,56 +119,20 @@ export default {
             }
         }
 
-        .saveName {
-            margin-top: 10px;
-            margin-bottom: 30px;
+        .success {
+            margin-bottom: 20px;
+            padding: 10px 0px 10px 15px;
+            background-color:#d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
 
-            input {
-                position: absolute;
-                top: 11px;
-                left: 1px;
-                opacity: 0;
-                visibility: hidden;
-            }
-
-            label {
-                color: #262525;
-                padding-left: 30px;
-                position: relative;
-                cursor: pointer;
-                display: block;
-
-                &:before {
-                    content: "";
-                    width: 16px;
-                    height: 16px;
-                    border: 1px solid rgba(0,0,0,0.1);
-                    background-image: url('data:image/svg+xml; utf-8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23fff" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>');
-                    background-repeat: no-repeat;
-                    background-size: 0;
-                    background-position: center;
-                    position: absolute;
-                    top: 5px;
-                    left: 0;
-                    border-radius: 0;
-                    font-weight: normal;
-                    text-align: center;
-                    line-height: 14px;
-                    font-size: 0;
-                    transition: all ease 0.35s;
-                }
-            }
-
-            input:checked + label, label:hover {
-                text-decoration: underline;
-            }
-
-            input:checked + label:before {
-                content: "";
-                border-color: #d18f7f;
-                background-color: #d18f7f;
-                background-size: 10px;
-            }
+        .fail {
+            margin-bottom: 20px;
+            padding: 10px 0px 10px 15px;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
         }
     }
 }

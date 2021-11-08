@@ -172,7 +172,7 @@ name: 'Navbar',
                 'Contact': 'Contact'
             },
             title: undefined,
-            paramsVideo: {mute: 1, controls: 0, playlist: 'r8nRuzq1nck', loop: 1, showinfo: 0}
+            paramsVideo: {mute: 1, controls: 0, playlist: 'r8nRuzq1nck', loop: 1, showinfo: 0, autoplay:1}
         }
     },
     components: { 
